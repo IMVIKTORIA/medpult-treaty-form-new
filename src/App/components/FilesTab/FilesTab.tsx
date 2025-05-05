@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { ListColumnData, PlanTabProps } from '../../shared/types'
+import { FilesListData, ListColumnData, PlanTabProps } from '../../shared/types'
 import CustomList from '../CustomList/CustomList'
 import Scripts from '../../shared/utils/clientScripts'
 import FilesDropdown from './FilesDropdown/FilesDropdown'
+import { downloadFile, onClickDownloadFile } from '../../shared/utils/utils'
+
+type FilesTabProps = {
+	/** Функция получения файлов */
+	getDataHandler: () => Promise<FilesListData>
+}
 
 /** Вкладка Вложения */
-function FilesTab({}: PlanTabProps) {
-	/** Скачать файл */
-	const onSaveFile = async () => {
-		console.log(' файл')
-	}
-
+function FilesTab({getDataHandler}: FilesTabProps) {
 	/** Колонки списка */
 	const columns = [
 		new ListColumnData({ name: 'Дата', code: 'dateFiles', fr: 1, isSortable: true }),
@@ -18,11 +19,11 @@ function FilesTab({}: PlanTabProps) {
 		new ListColumnData({ name: 'Вид документа', code: 'documenType', fr: 1, isSortable: true }),
 		new ListColumnData({
 			name: '',
-			code: 'files',
+			code: 'id',
 			fr: 0.5,
 			isIcon: true,
 			isLink: true,
-			onClick: onSaveFile,
+			onClick: onClickDownloadFile,
 		}),
 	]
 
@@ -30,11 +31,12 @@ function FilesTab({}: PlanTabProps) {
 		<div className="amendment-tab">
 			<CustomList
 				columnsSettings={columns}
-				getDataHandler={Scripts.getFilesTreaty}
+				// getDataHandler={Scripts.getFilesTreaty}
+				getDataHandler={getDataHandler}
 				isScrollable={false}
 			/>
 		</div>
 	)
-}
+}	
 
 export default FilesTab

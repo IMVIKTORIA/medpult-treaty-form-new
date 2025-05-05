@@ -21,7 +21,7 @@ import Scripts from '../../../shared/utils/clientScripts'
 import Button from '../../Button/Button'
 import Loader from '../../Loader/Loader'
 import PlanDetailsLayout from '../PlanDetailsLayout/planDetailsLayout'
-import { useMapState } from '../../../shared/utils/utils'
+import { onClickDownloadFile, useMapState } from '../../../shared/utils/utils'
 import ProgramDetails from '../ProgramDetails/ProgramDetails'
 import TouDetails from '../TouDetails/TouDetails'
 import FilesTab from '../../FilesTab/FilesTab'
@@ -36,6 +36,8 @@ interface PlanRowData {
 	'endDate': InputDataString
 	'parentPlan': InputDataCategory
 	'additionalAgreement': InputDataString
+	/** Идентификатор файла */
+	fileId?: string
 }
 
 class PlanDetailsProps implements DetailsProps {
@@ -65,10 +67,6 @@ function PlanDetails(props: PlanDetailsProps) {
 		})
 	}, [])
 
-	/** Скачать файл */
-	const onSaveFile = () => {
-		console.log('скачали файл!')
-	}
 	/** Колонки списка программ */
 	const columns = [
 		new ListColumnData({ name: 'номер', code: 'number', fr: 1, isSortable: true }),
@@ -93,11 +91,11 @@ function PlanDetails(props: PlanDetailsProps) {
 		}),
 		new ListColumnData({
 			name: '',
-			code: 'files',
+			code: 'fileId',
 			fr: 0.5,
 			isIcon: true,
 			isLink: true,
-			onClick: onSaveFile,
+			onClick: onClickDownloadFile,
 		}),
 	]
 
@@ -218,7 +216,7 @@ function PlanDetails(props: PlanDetailsProps) {
 							<TouDetails isViewMode={isViewMode} values={touValues} handler={setValueSearch} />
 						</TabItem>
 						<TabItem code={'filesPlan'} name={'Вложения на план'}>
-							<FilesTab handler={() => {}} values={filesValues} isViewMode={isViewMode} />
+							<FilesTab getDataHandler={() => Scripts.getFilesPlan(props.data.id)} />
 						</TabItem>
 					</TabsWrapperNew>
 					{/* <div className="plan-details__tabs">
