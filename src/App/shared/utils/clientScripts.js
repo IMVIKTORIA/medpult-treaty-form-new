@@ -741,7 +741,7 @@ async function getPlanFulldata(id) {
 		},
 		'regionExt': ['Московская область', 'Ленинградская область', 'Московская область'],
 	}
-
+	
 	await randomDelay()
 	return data
 }

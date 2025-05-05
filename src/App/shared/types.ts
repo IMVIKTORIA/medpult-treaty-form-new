@@ -556,3 +556,18 @@ export interface FileFullData {
     /** Тип файла */
     type: string;
 }
+
+/** Данные строки плана */
+export interface PlanRowData {
+	'id': string
+	'number': InputDataCategory
+	'title': InputDataString
+	'type': InputDataCategory
+	'age': InputDataString
+	'startDate': InputDataString
+	'endDate': InputDataString
+	'parentPlan': InputDataCategory
+	'additionalAgreement': InputDataString
+	/** Идентификатор файла */
+	'fileId': string
+}
