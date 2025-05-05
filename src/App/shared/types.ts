@@ -510,6 +510,25 @@ export class AmendmentDetailsData {
 	}
 }
 
+export interface ListData {
+    /** Список данных */
+    data: any[],
+    /** Есть ли еще страница списка */
+    hasMore: boolean
+}
+
+/** Список вложений */
+export class FilesListData implements ListData {
+    /** Данные вложений */
+    data: FilesData[]
+    hasMore: boolean
+
+    constructor() {
+        this.data = [];
+        this.hasMore =false;
+    }
+}
+
 /** Данные вложений */
 export class FilesData {
 	/** Наименование */
@@ -526,4 +545,29 @@ export class FilesData {
 		this.nameFiles = new InputDataString()
 		this.documenType = new InputDataString()
 	}
+}
+
+// Полные данные файла
+export interface FileFullData {
+    /** Название */
+    name: string;
+    /** Данные файла */
+    arrayBuffer: ArrayBuffer;
+    /** Тип файла */
+    type: string;
+}
+
+/** Данные строки плана */
+export interface PlanRowData {
+	'id': string
+	'number': InputDataCategory
+	'title': InputDataString
+	'type': InputDataCategory
+	'age': InputDataString
+	'startDate': InputDataString
+	'endDate': InputDataString
+	'parentPlan': InputDataCategory
+	'additionalAgreement': InputDataString
+	/** Идентификатор файла */
+	'fileId': string
 }

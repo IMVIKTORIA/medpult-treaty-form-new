@@ -15,10 +15,11 @@ interface ListColumnProps extends ListColumnData {
 
 function CustomListRowColumn(props: ListColumnProps) {
 	const { fr, data, isLink, onClick, isIcon } = props
-
+	
 	const onClickColumn =
 		isLink && onClick
-			? () => {
+			? (ev: any) => {
+					ev.stopPropagation()
 					onClick(data)
 			  }
 			: () => {}

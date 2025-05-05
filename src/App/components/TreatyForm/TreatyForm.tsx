@@ -247,12 +247,7 @@ export default function TreatyForm() {
 									/>
 								</TabItem>
 								<TabItem code={'files'} name={`Вложения по договору (${elementsCount})`}>
-									<FilesTab
-										handler={() => {}}
-										values={values}
-										isViewMode={isViewMode}
-										saveStateHandler={saveState}
-									/>
+									<FilesTab getDataHandler={Scripts.getFilesTreaty}/>
 								</TabItem>
 							</TabsWrapper>
 							<div

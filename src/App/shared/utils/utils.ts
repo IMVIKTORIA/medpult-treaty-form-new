@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { IFormData, IInputData } from '../types'
+import { FileFullData, IFormData, IInputData } from '../types'
 import Scripts from './clientScripts'
 
 /** Маршрутизация по SPA */
@@ -79,4 +79,42 @@ export function useDebounce<ValueType = any>(value: ValueType, delay: number): V
 	)
 
 	return debouncedValue
+}
+
+type CreateFileArgs = {
+	name: string,
+	contentType: string,
+	arrayBuffer: ArrayBuffer
+}
+
+/** Создание File для записи в input */
+export function createFile({name, contentType, arrayBuffer}: CreateFileArgs) {
+	const file = new File([arrayBuffer], name, {type: contentType});
+	return file;
+}
+
+/** Скачать файл */
+export function downloadFile(fileFullData: FileFullData) {
+	const file = createFile({
+		name: fileFullData.name, 
+		contentType: fileFullData.type, 
+		arrayBuffer: fileFullData.arrayBuffer
+	})
+
+	const a = document.createElement("a");
+	a.setAttribute("href", URL.createObjectURL(file));
+	a.setAttribute("download", fileFullData.name);
+	a.click();
+
+	const href = a.getAttribute("href");
+	if(href) URL.revokeObjectURL(href);
+
+	a.remove()
+}
+
+export async function onClickDownloadFile(fileId?: string) {
+	if(!fileId) return;
+	
+	const fileFulldata = await Scripts.getFileFulldata(fileId);
+	downloadFile(fileFulldata);
 }

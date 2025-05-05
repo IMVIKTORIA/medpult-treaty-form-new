@@ -1,4 +1,5 @@
-import { InputDataCategory, InputDataString, InsuredDetailsData } from '../types'
+import { FileFullData, InputDataCategory, InputDataString, InsuredDetailsData } from '../types'
+import typedScripts from './typedClientScripts';
 
 /** Заглушка ожидания ответа сервера */
 function randomDelay() {
@@ -633,6 +634,7 @@ async function getPrograms(planId, sortData) {
 		'risk': {
 			'value': 'Онко ТКМ',
 		},
+		'fileId': "test_id"
 	}
 
 	return {
@@ -739,7 +741,7 @@ async function getPlanFulldata(id) {
 		},
 		'regionExt': ['Московская область', 'Ленинградская область', 'Московская область'],
 	}
-
+	
 	await randomDelay()
 	return data
 }
@@ -1250,38 +1252,6 @@ async function getFilesCountTreaty() {
 	return 5
 }
 
-/** Получение данных вложений по договору */
-const getFilesTreaty = async (page) => {
-	const mockData = {
-		'id': '1',
-		'dateFiles': {
-			'value': '01.12.2023 12:00:00',
-		},
-		'nameFiles': {
-			'value': 'СБС_Омск(Стандарт АПП ПНД)',
-		},
-		'documenType': {
-			'value': 'Прочее',
-		},
-		'files': {
-			'value': [
-				{ name: 'File 1.pdf', date: '05.03.2025 11:00', url: '...' },
-				{ name: 'File 2.pdf', date: '05.03.2025 12:00', url: '...' },
-			],
-		},
-	}
-
-	await randomDelay()
-	return {
-		data: Array(5)
-			.fill()
-			.map((data, index) => {
-				return { ...mockData, 'id': index }
-			}),
-		hasMore: true,
-	}
-}
-
 export default {
 	getProducts,
 	getChannels,
@@ -1330,5 +1300,6 @@ export default {
 	getFilesCountTreaty,
 	getSorts,
 	getTou,
-	getFilesTreaty,
+
+	...typedScripts
 }
