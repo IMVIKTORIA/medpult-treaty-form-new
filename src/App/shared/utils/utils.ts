@@ -112,7 +112,9 @@ export function downloadFile(fileFullData: FileFullData) {
 	a.remove()
 }
 
-export async function onClickDownloadFile(fileId: string) {
+export async function onClickDownloadFile(fileId?: string) {
+	if(!fileId) return;
+	
 	const fileFulldata = await Scripts.getFileFulldata(fileId);
 	downloadFile(fileFulldata);
 }
