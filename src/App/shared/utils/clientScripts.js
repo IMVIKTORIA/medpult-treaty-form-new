@@ -560,7 +560,7 @@ const getContractors = async (page) => {
 		data: Array(20)
 			.fill()
 			.map((data, index) => {
-				return { ...mockData, 'id': index }
+				return { ...mockData, 'id': index, 'fileId': Math.random() > 0.5 ? "test_id" : undefined }
 			}),
 		hasMore: true,
 	}
@@ -641,7 +641,7 @@ async function getPrograms(planId, sortData) {
 		data: Array(20)
 			.fill()
 			.map((data, index) => {
-				return { ...mockData, 'id': index }
+				return { ...mockData, 'id': index, 'fileId': Math.random() > 0.5 ? "test_id" : undefined }
 			}),
 		hasMore: false,
 	}

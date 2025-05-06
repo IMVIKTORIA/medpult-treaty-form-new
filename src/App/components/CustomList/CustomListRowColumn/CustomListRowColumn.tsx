@@ -36,8 +36,9 @@ function CustomListRowColumn(props: ListColumnProps) {
 				title={isIcon ? 'вложение' : data.value}
 				onClick={onClickColumn}
 				style={{ cursor: isIcon ? 'pointer' : 'default' }}
+				className={isIcon ? 'custom-list-row-column__icon' : undefined}
 			>
-				{isIcon && iconToShow}
+				{isIcon && data && iconToShow}
 				{!isIcon && data.value}
 			</span>
 		</div>
