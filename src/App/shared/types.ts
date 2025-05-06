@@ -281,6 +281,8 @@ export class InsuredSearchData {
 	plan: InputDataString
 	/** ДС */
 	additionalAgreement: InputDataString
+	/** Идентификатор файла */
+	fileId?: string
 
 	constructor() {
 		this.category = new InputDataCategory()

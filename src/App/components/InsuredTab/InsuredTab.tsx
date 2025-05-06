@@ -15,7 +15,7 @@ import CustomSelectList from '../CustomSelect/CustomSelect'
 import icons from '../../shared/icons'
 import CustomList from '../CustomList/CustomList'
 import Scripts from '../../shared/utils/clientScripts'
-import utils, { openContractorPage, redirectSPA, useMapState } from '../../shared/utils/utils'
+import utils, { onClickDownloadFile, openContractorPage, redirectSPA, useMapState } from '../../shared/utils/utils'
 import InsuredDetails from './InsuredDetails/InsuredDetails'
 import { localStorageDraftKeyInsuredId } from '../../shared/utils/constants'
 import InsuredCreate from './InsuredCreate/InsuredCreate'
@@ -84,10 +84,6 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		saveStateHandler()
 		openContractorPage(data.data.code)
 	}
-	/** Скачать файл */
-	const onSaveFile = () => {
-		console.log('скачали файл!')
-	}
 
 	/** Колонки списка */
 	const columns = [
@@ -108,11 +104,11 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		new ListColumnData({ name: 'Полис', code: 'additionalAgreement', fr: 1 }),
 		new ListColumnData({
 			name: '',
-			code: 'files',
+			code: 'fileId',
 			fr: 0.5,
 			isIcon: true,
 			isLink: true,
-			onClick: onSaveFile,
+			onClick: onClickDownloadFile,
 		}),
 	]
 
@@ -221,6 +217,7 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 					setSearchHandler={setOnClickSearch}
 					getDetailsLayout={getInsuredDetailsLayout}
 					getDataHandler={Scripts.getContractors}
+					isScrollable={false}
 				/>
 			</div>
 		</div>
