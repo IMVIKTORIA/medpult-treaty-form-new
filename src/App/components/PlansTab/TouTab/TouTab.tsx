@@ -74,7 +74,7 @@ function TouTab({ values, handler }: TouTabProps) {
 					columnsSettings={columns}
 					searchData={values}
 					setSearchHandler={setOnClickSearch}
-					getDataHandler={Scripts.getTou}
+					getDataHandler={Scripts.getPlanServicePoints}
 				/>
 			</div>
 		</div>

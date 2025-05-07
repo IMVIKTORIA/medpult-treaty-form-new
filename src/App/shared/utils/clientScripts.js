@@ -1198,8 +1198,8 @@ async function getSorts() {
 	return data
 }
 
-/** Получение ТОУ */
-const getTou = async () => {
+/** Получение ТОУ в планах */
+const getPlanServicePoints = async () => {
 	const mockData = {
 		'codeTou': {
 			'value': 'Иванов Иван Иванович',
@@ -1299,7 +1299,7 @@ export default {
 	OnInit,
 	getFilesCountTreaty,
 	getSorts,
-	getTou,
+	getPlanServicePoints,
 
 	...typedScripts
 }
