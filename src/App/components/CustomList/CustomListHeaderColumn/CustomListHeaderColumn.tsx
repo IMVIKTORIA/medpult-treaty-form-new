@@ -8,7 +8,7 @@ interface ListColumnProps extends ListColumnData {
 }
 
 function CustomListColumn(props: ListColumnProps) {
-	const { code, fr, isSortable, name, handleSortClick, sortData } = props;
+	const { code, fr, fixedWidth, isSortable, name, handleSortClick, sortData } = props;
 
 	/** Переключение режима сортировки для колонки */
 	const toggleSortColumn = () => {
@@ -45,7 +45,7 @@ function CustomListColumn(props: ListColumnProps) {
 	)
 
 	return (
-		<div className="custom-list-header-column" style={{ flex: fr }}>
+		<div className="custom-list-header-column" style={fixedWidth ? { width: fixedWidth } : { flex: fr }}>
 			<div className="custom-list-header-column__name">
 				{name}
 			</div>

@@ -56,7 +56,7 @@ function PlanDetailsProgramsTab(props: ProgramsTabProps) {
     new ListColumnData({
       name: "",
       code: "fileId",
-      fr: 0.5,
+			fixedWidth: '56px',
       isIcon: true,
       isLink: true,
       onClick: onClickDownloadFile,

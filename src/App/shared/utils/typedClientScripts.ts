@@ -51,7 +51,7 @@ async function getFilesPlan(planId: string): Promise<FilesListData> {
 	return {
 		data: Array(5).fill(0)
 			.map((data, index) => {
-				return { ...mockData, 'id': index }
+				return { ...mockData, 'id': `${index}` }
 			}),
 		hasMore: true,
 	}
