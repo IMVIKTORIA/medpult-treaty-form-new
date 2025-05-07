@@ -15,7 +15,7 @@ import {
 import CustomListRow from '../../CustomList/CustomListRow/CustomListRow'
 import Scripts from '../../../shared/utils/clientScripts'
 import Loader from '../../Loader/Loader'
-import TouDetails from '../TouDetails/TouDetails'
+import TouTab from '../TouTab/TouTab'
 import FilesTab from '../../FilesTab/FilesTab'
 import PlanDetailsProgramsTab from '../PlanDetailsProgramsTab/PlanDetailsProgramsTab'
 
@@ -103,7 +103,7 @@ function PlanDetails(props: PlanDetailsProps) {
 							<PlanDetailsProgramsTab data={data}/>
 						</TabItem>
 						<TabItem code={'tou'} name={'ТОУ'}>
-							<TouDetails isViewMode={isViewMode} values={touValues} handler={setValueSearch} />
+							<TouTab isViewMode={isViewMode} values={touValues} handler={setValueSearch} />
 						</TabItem>
 						<TabItem code={'filesPlan'} name={'Вложения на план'}>
 							<FilesTab getDataHandler={() => Scripts.getFilesPlan(props.data.id)} />

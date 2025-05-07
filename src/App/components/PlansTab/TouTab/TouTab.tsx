@@ -12,7 +12,7 @@ interface TouTabProps extends Omit<TabProps, 'values' | 'saveStateHandler' | 'se
 }
 
 /** Вкладка Тоу */
-function TouDetails({ values, handler }: TouTabProps) {
+function TouTab({ values, handler }: TouTabProps) {
 	const [onClickSearch, setOnClickSearch] = useState<any>()
 
 	// Обработчик нажатия на Enter
@@ -81,4 +81,4 @@ function TouDetails({ values, handler }: TouTabProps) {
 	)
 }
 
-export default TouDetails
+export default TouTab
