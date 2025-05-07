@@ -84,6 +84,8 @@ export interface IFormDataLPU extends IFormDataGeneral {
 export class ListColumnData {
 	/** Коэффициент соотношения ширины столбца */
 	fr: number
+	/** Фиксированная ширина столбца */
+	fixedWidth: string
 	/** Можно ли по этому столбцу сортировать */
 	isSortable: boolean
 	/** Хранит ли по столбец ссылки */
@@ -105,6 +107,7 @@ export class ListColumnData {
 		isLink,
 		onClick,
 		isIcon,
+		fixedWidth,
 	}: {
 		name: string
 		code: string
@@ -113,6 +116,7 @@ export class ListColumnData {
 		isLink?: boolean
 		onClick?: (props: any) => any
 		isIcon?: boolean
+		fixedWidth?: string
 	}) {
 		this.fr = fr ?? 1
 		this.isSortable = isSortable ?? false
@@ -123,6 +127,8 @@ export class ListColumnData {
 
 		this.name = name
 		this.code = code
+
+		if(fixedWidth) this.fixedWidth = fixedWidth;
 	}
 }
 

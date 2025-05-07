@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import {
+	FrMeasure,
 	InputDataCategory,
 	InsuredDetailsData,
 	InsuredSearchData,
@@ -90,14 +91,14 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		new ListColumnData({
 			name: 'ФИО',
 			code: 'fullname',
-			fr: 1.5,
+			fr: 2,
 			isSortable: true,
 			isLink: true,
 			onClick: onClickContractor,
 		}),
 		new ListColumnData({ name: 'Дата рождения', code: 'birthDate', fr: 1, isSortable: true }),
 		new ListColumnData({ name: 'Номер полиса', code: 'policyNumber', fr: 1.5 }),
-		new ListColumnData({ name: 'Категория', code: 'category', fr: 1.5 }),
+		new ListColumnData({ name: 'Категория', code: 'category', fr: 0.6 }),
 		new ListColumnData({ name: 'Дата начала', code: 'startDate', fr: 1 }),
 		new ListColumnData({ name: 'Дата окончания', code: 'endDate', fr: 1 }),
 		new ListColumnData({ name: 'План', code: 'plan', fr: 1.5 }),
@@ -105,7 +106,7 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		new ListColumnData({
 			name: '',
 			code: 'fileId',
-			fr: 0.5,
+			fixedWidth: '56px',
 			isIcon: true,
 			isLink: true,
 			onClick: onClickDownloadFile,
