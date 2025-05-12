@@ -7,10 +7,11 @@ import {
   TouSearchData,
   IInputData,
   PlanRowData,
+  FilesData,
 } from "../../../shared/types";
 import CustomList from "../../CustomList/CustomList";
 import Scripts from "../../../shared/utils/clientScripts";
-import { onClickDownloadFile, useMapState } from "../../../shared/utils/utils";
+import { onClickDownloadFileByUrl, useMapState } from "../../../shared/utils/utils";
 import ProgramDetails from "../ProgramDetails/ProgramDetails";
 
 class ProgramsTabProps {
@@ -20,6 +21,12 @@ class ProgramsTabProps {
 /** Форма редактирования/просмотра плана страхования */
 function PlanDetailsProgramsTab(props: ProgramsTabProps) {
   const { data } = props;
+
+  function handleDownloadMultipleFiles(files: FilesData[]) {
+    for(const file of files) {
+      onClickDownloadFileByUrl(file.fileDownloadURL, file.nameFiles.value)
+    }
+  }
 
   /** Колонки списка программ */
   const columns = [
@@ -55,11 +62,11 @@ function PlanDetailsProgramsTab(props: ProgramsTabProps) {
     }),
     new ListColumnData({
       name: "",
-      code: "fileId",
+      code: "files",
 			fixedWidth: '56px',
       isIcon: true,
       isLink: true,
-      onClick: onClickDownloadFile,
+      onClick: handleDownloadMultipleFiles,
     }),
   ];
 

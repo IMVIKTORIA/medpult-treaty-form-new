@@ -1,4 +1,4 @@
-import { FileFullData, InputDataCategory, InputDataString, InsuredDetailsData } from '../types'
+import { FileFullData, FilesData, InputDataCategory, InputDataString, InsuredDetailsData } from '../types'
 import typedScripts from './typedClientScripts';
 
 /** Заглушка ожидания ответа сервера */
@@ -634,7 +634,14 @@ async function getPrograms(planId, sortData) {
 		'risk': {
 			'value': 'Онко ТКМ',
 		},
-		'fileId': "test_id"
+		'fileDownloadUrls': [
+			"https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg",
+			"https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg"
+		],
+		'files': [
+			{...new FilesData(), fileDownloadURL: "https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg", nameFiles: new InputDataString("file1")},
+			{...new FilesData(), fileDownloadURL: "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg", nameFiles: new InputDataString("file2")},
+		]
 	}
 
 	return {
