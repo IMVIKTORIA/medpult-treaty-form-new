@@ -22,17 +22,18 @@ function randomDelay() {
 /** Получение данных вложений по договору */
 async function getFilesTreaty(): Promise<FilesListData> {
 	const mockData: FilesData = {
+		'id': "test",
+		'fileDownloadURL': "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
 		'dateFiles': new InputDataString('01.12.2023 12:00:00'),
 		'nameFiles': new InputDataString('СБС_Омск(Стандарт АПП ПНД)'),
 		'documenType': new InputDataString('Прочее'),
-		'files': []
 	}
 
 	await randomDelay()
 	return {
 		data: Array(5).fill(0)
 			.map((data, index) => {
-				return { ...mockData, 'id': index }
+				return { ...mockData, 'id': `${index}` }
 			}),
 		hasMore: true,
 	}
@@ -41,10 +42,11 @@ async function getFilesTreaty(): Promise<FilesListData> {
 /** Получение данных вложений по плану */
 async function getFilesPlan(planId: string): Promise<FilesListData> {
 	const mockData: FilesData = {
+		'id': "test",
+		'fileDownloadURL': "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
 		'dateFiles': new InputDataString('01.12.2023 12:00:00'),
 		'nameFiles': new InputDataString('СБС_Омск(Стандарт АПП ПНД)'),
 		'documenType': new InputDataString('Прочее'),
-		'files': []
 	}
 
 	await randomDelay()
@@ -60,17 +62,18 @@ async function getFilesPlan(planId: string): Promise<FilesListData> {
 /** Получение данных вложений по программе */
 async function getFilesProgram(programId: string): Promise<FilesListData> {
 	const mockData: FilesData = {
+		'id': "test",
+		'fileDownloadURL': "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
 		'dateFiles': new InputDataString('01.12.2023 12:00:00'),
 		'nameFiles': new InputDataString('СБС_Омск(Стандарт АПП ПНД)'),
 		'documenType': new InputDataString('Прочее'),
-		'files': []
 	}
 
 	await randomDelay()
 	return {
 		data: Array(5).fill(0)
 			.map((data, index) => {
-				return { ...mockData, 'id': index }
+				return { ...mockData, 'id': `${index}` }
 			}),
 		hasMore: true,
 	}

@@ -539,14 +539,16 @@ export class FilesListData implements ListData {
 
 /** Данные вложений */
 export class FilesData {
+	/** Идентификатор файла */
+	id: string;
+	/** Ссылка на скачивание файла */
+	fileDownloadURL: string
 	/** Наименование */
 	dateFiles: InputDataString
 	/** Номер */
 	nameFiles: InputDataString
-	/** Риск / Спец.Риск */
+	/** Тип */
 	documenType: InputDataString
-	/** Тип программы страхования */
-	files: []
 
 	constructor() {
 		this.dateFiles = new InputDataString()
@@ -576,6 +578,6 @@ export interface PlanRowData {
 	'endDate': InputDataString
 	'parentPlan': InputDataCategory
 	'additionalAgreement': InputDataString
-	/** Идентификатор файла */
-	'fileId': string
+	/** Данные файлов */
+	'files': FilesData
 }
