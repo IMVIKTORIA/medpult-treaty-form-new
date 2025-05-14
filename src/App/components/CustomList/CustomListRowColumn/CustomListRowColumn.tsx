@@ -6,11 +6,11 @@ import React, {
 	useRef,
 	useState,
 } from 'react'
-import { IInputData, ListColumnData, SortData } from '../../../shared/types'
+import { FilesData, IInputData, ListColumnData, SortData } from '../../../shared/types'
 import icons from '../../../shared/icons'
 
 interface ListColumnProps extends ListColumnData {
-	data: IInputData
+	data: (IInputData | string | FilesData[])
 }
 
 function CustomListRowColumn(props: ListColumnProps) {
@@ -35,6 +35,8 @@ function CustomListRowColumn(props: ListColumnProps) {
 		return true
 	}
 
+	const value = data.hasOwnProperty("value") ? (data as IInputData).value : undefined;
+	
 	return (
 		<div
 			className={
@@ -43,13 +45,12 @@ function CustomListRowColumn(props: ListColumnProps) {
 			style={fixedWidth ? { width: fixedWidth } : { flex: fr }}
 		>
 			<span
-				title={isIcon ? 'вложение' : data.value}
+				title={isIcon ? 'вложение' : value}
 				onClick={onClickColumn}
 				style={{ cursor: isIcon ? 'pointer' : 'default' }}
-				// className={isIcon ? 'custom-list-row-column__icon' : undefined}
 			>
 				{isIcon && checkIsShowIconByData() && iconToShow}
-				{!isIcon && data.value}
+				{!isIcon && value}
 			</span>
 		</div>
 	)

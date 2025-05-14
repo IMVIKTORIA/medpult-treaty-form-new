@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import {
+	FilesData,
 	FrMeasure,
 	InputDataCategory,
 	InsuredDetailsData,
@@ -16,7 +17,7 @@ import CustomSelectList from '../CustomSelect/CustomSelect'
 import icons from '../../shared/icons'
 import CustomList from '../CustomList/CustomList'
 import Scripts from '../../shared/utils/clientScripts'
-import utils, { onClickDownloadFile, openContractorPage, redirectSPA, useMapState } from '../../shared/utils/utils'
+import utils, { onClickDownloadFile, onClickDownloadFileByUrl, openContractorPage, redirectSPA, useMapState } from '../../shared/utils/utils'
 import InsuredDetails from './InsuredDetails/InsuredDetails'
 import { localStorageDraftKeyInsuredId } from '../../shared/utils/constants'
 import InsuredCreate from './InsuredCreate/InsuredCreate'
@@ -85,6 +86,12 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		saveStateHandler()
 		openContractorPage(data.data.code)
 	}
+	
+	function handleDownloadMultipleFiles(files: FilesData[]) {
+		for(const file of files) {
+			onClickDownloadFileByUrl(file.fileDownloadURL, file.nameFiles.value)
+		}
+	}
 
 	/** Колонки списка */
 	const columns = [
@@ -105,11 +112,11 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 		new ListColumnData({ name: 'Полис', code: 'additionalAgreement', fr: 1 }),
 		new ListColumnData({
 			name: '',
-			code: 'fileId',
+			code: 'files',
 			fixedWidth: '56px',
 			isIcon: true,
 			isLink: true,
-			onClick: onClickDownloadFile,
+			onClick: handleDownloadMultipleFiles,
 		}),
 	]
 
