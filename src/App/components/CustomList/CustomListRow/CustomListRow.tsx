@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IInputData, ListColumnData, getDetailsLayoutAttributes } from '../../../shared/types'
+import { FilesData, IInputData, ListColumnData, getDetailsLayoutAttributes } from '../../../shared/types'
 import CustomListRowColumn from '../CustomListRowColumn/CustomListRowColumn'
 import Loader from '../../Loader/Loader'
 
@@ -8,7 +8,7 @@ interface ListRowProps {
 	/** Параметры отображения колонки */
 	columnsSettings: ListColumnData[]
 	/** Данные строки */
-	data: { [key: string]: IInputData }
+	data: { [key: string]: (IInputData | string | FilesData[]) }
 
 	/** Настройки открытия детальной информации по строке (Необязательно) */
 	/** Показать детальную информацию */

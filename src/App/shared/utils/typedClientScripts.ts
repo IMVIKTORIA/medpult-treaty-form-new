@@ -39,6 +39,11 @@ async function getFilesTreaty(): Promise<FilesListData> {
 	}
 }
 
+/** Получение количества вложений по плану */
+async function  getFilesCountPlan(planId: string) {
+	return 5;
+}
+
 /** Получение данных вложений по плану */
 async function getFilesPlan(planId: string): Promise<FilesListData> {
 	const mockData: FilesData = {
@@ -83,5 +88,7 @@ export default {
 	getFileFulldata,
 	getFilesTreaty,
 	getFilesPlan,
-	getFilesProgram
+	getFilesProgram,
+
+	getFilesCountPlan,
 }
