@@ -1356,7 +1356,7 @@ export default {
   getAmendmentFulldata,
   saveAmendment,
   OnInit,
-  getFilesCountTreaty,
+  getFilesCountProgram: getFilesCountTreaty,
   getSorts,
   getPlanServicePoints,
 

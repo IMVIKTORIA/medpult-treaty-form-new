@@ -175,7 +175,7 @@ export default function TreatyForm() {
 	//количество вложений
 	const [elementsCount, setElementsCount] = useState<number>(0)
 	const fetchElementsCount = async () => {
-		const count = await Scripts.getFilesCountTreaty()
+		const count = await Scripts.getFilesCountProgram()
 		setElementsCount(count)
 	}
 	// Вычислить количество вложений

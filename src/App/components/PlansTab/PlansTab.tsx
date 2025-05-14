@@ -46,7 +46,6 @@ function PlansTab({ setActionHandlers }: TabProps) {
 		return <PlanCreate reloadData={reloadData} values={planValues} setValue={setPlanValue} setValues={setPlanValues} closeHandler={closeCreateMode} />
 	}
 
-
 	return (
 		<div className="plans-tab">
 			<div className="plans-tab__list">
