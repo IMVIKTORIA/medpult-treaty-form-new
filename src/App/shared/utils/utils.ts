@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { FileFullData, IFormData, IInputData } from '../types'
 import Scripts from './clientScripts'
+import clientScripts from './clientScripts'
 
 /** Маршрутизация по SPA */
 export const redirectSPA = (href: string) => {
@@ -124,13 +125,14 @@ export async function onClickDownloadFileByUrl(url?: string, fileName?: string) 
 	try {
 		if(!url) return;
 
-		const response = await fetch(url);
-		const blob = await response.blob();
+		// const response = await fetch(url);
+		// const blob = await response.blob();
+		const response = await clientScripts.downloadFileBucket(url)
+		const blob = new Blob([response.arrayBuffer], { type: response.contentType});
 		const link = document.createElement("a");
 
 		link.href = URL.createObjectURL(blob);
 		link.download = fileName || url.substring(url.lastIndexOf("/") + 1);
-
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
