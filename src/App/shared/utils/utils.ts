@@ -127,12 +127,13 @@ export async function onClickDownloadFileByUrl(url?: string, fileName?: string) 
 
 		// const response = await fetch(url);
 		// const blob = await response.blob();
-		const response = await clientScripts.downloadFileBucket(url)
+		const fileNameCalculated = fileName || url.substring(url.lastIndexOf("/") + 1);
+		const response = await clientScripts.downloadFileBucket(url, fileNameCalculated)
 		const blob = new Blob([response.arrayBuffer], { type: response.contentType});
 		const link = document.createElement("a");
 
 		link.href = URL.createObjectURL(blob);
-		link.download = fileName || url.substring(url.lastIndexOf("/") + 1);
+		link.download = fileNameCalculated;
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);

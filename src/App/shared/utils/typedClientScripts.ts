@@ -85,7 +85,7 @@ async function getFilesProgram(programId: string): Promise<FilesListData> {
 }
 
 /** Скачать файл из внешней системы */
-async function downloadFileBucket(url: string): Promise<{arrayBuffer: ArrayBuffer;contentType: string;}> {
+async function downloadFileBucket(url: string, fileName: string): Promise<{arrayBuffer: ArrayBuffer;contentType: string;}> {
 	// TODO
 	const file = await fetch(url);
 
