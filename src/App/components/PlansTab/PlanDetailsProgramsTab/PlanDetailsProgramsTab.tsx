@@ -11,23 +11,61 @@ import {
 } from "../../../shared/types";
 import CustomList from "../../CustomList/CustomList";
 import Scripts from "../../../shared/utils/clientScripts";
-import { onClickDownloadFileByUrl, useMapState } from "../../../shared/utils/utils";
+import {
+  onClickDownloadFileByUrl,
+  useMapState,
+} from "../../../shared/utils/utils";
 import ProgramDetails from "../ProgramDetails/ProgramDetails";
+import FilesDropdown from "../../FilesTab/FilesDropdown/FilesDropdown";
 
 class ProgramsTabProps {
   data: PlanRowData;
 }
 
-/** Форма редактирования/просмотра плана страхования */
 function PlanDetailsProgramsTab(props: ProgramsTabProps) {
   const { data } = props;
+  const [dropdownFiles, setDropdownFiles] = useState<FilesData[] | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
 
-  function handleDownloadMultipleFiles(files: FilesData[]) {
-    for(const file of files) {
-      onClickDownloadFileByUrl(file.fileDownloadURL, file.nameFiles.value)
-    }
+  function handleDownloadFile(file: FilesData) {
+    onClickDownloadFileByUrl(file.fileDownloadURL, file.nameFiles.value);
   }
 
+  /** Обработчик клика по иконке файла */
+  const handleFileIconClick = (event: React.MouseEvent, rowData: any) => {
+    event.stopPropagation();
+
+    const files = rowData.attachments || rowData.files || [];
+    if (files.length === 0) return;
+
+    const iconRect = (
+      event.currentTarget as HTMLElement
+    ).getBoundingClientRect();
+    const container = document.querySelector(".plan-details__programs");
+
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+
+    const dropdownX = iconRect.left - containerRect.left;
+    const dropdownY = iconRect.bottom - containerRect.top;
+
+    setDropdownFiles(files);
+    setDropdownPosition({ top: dropdownY, left: dropdownX });
+  };
+
+  /** Обработчик выбора файла из выпадающего списка */
+  const handleFileSelect = (file: FilesData) => {
+    handleDownloadFile(file);
+    setDropdownFiles(null);
+  };
+
+  const handleCloseDropdown = () => {
+    setDropdownFiles(null);
+  };
   /** Колонки списка программ */
   const columns = [
     new ListColumnData({
@@ -63,10 +101,12 @@ function PlanDetailsProgramsTab(props: ProgramsTabProps) {
     new ListColumnData({
       name: "",
       code: "files",
-			fixedWidth: '56px',
+      fixedWidth: "56px",
       isIcon: true,
       isLink: true,
-      onClick: handleDownloadMultipleFiles,
+      onClick: (data: any, event?: React.MouseEvent) => {
+        if (event) handleFileIconClick(event, { files: data });
+      },
     }),
   ];
 
@@ -108,13 +148,24 @@ function PlanDetailsProgramsTab(props: ProgramsTabProps) {
 
   return (
     <>
-      <div className="plan-details__programs">
+      <div
+        className="plan-details__programs"
+        style={{ position: "relative", overflow: "visible" }}
+      >
         <CustomList
           getDetailsLayout={getProgramDetailsLayout}
           columnsSettings={columns}
           getDataHandler={getProgramms}
           isScrollable={false}
         />
+        {dropdownFiles && dropdownPosition && (
+          <FilesDropdown
+            files={dropdownFiles}
+            position={dropdownPosition}
+            onSelect={handleFileSelect}
+            onClose={handleCloseDropdown}
+          />
+        )}
       </div>
     </>
   );
