@@ -632,7 +632,7 @@ const getPlans = async (page) => {
 
   await randomDelay();
   return {
-    data: Array(20)
+    data: Array(3)
       .fill()
       .map((data, index) => {
         return { ...mockData, id: index };
@@ -668,7 +668,7 @@ async function getPrograms(planId, sortData) {
   };
 
   return {
-    data: Array(20)
+    data: Array(5)
       .fill()
       .map((data, index) => {
         return {
@@ -683,12 +683,14 @@ async function getPrograms(planId, sortData) {
                     fileDownloadURL:
                       "https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg",
                     nameFiles: new InputDataString("file1"),
+                    dateFiles: new InputDataString("05.03.2025 11:00"),
                   },
                   {
                     ...new FilesData(),
                     fileDownloadURL:
                       "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
                     nameFiles: new InputDataString("file2"),
+                    dateFiles: new InputDataString("05.03.2025 12:00"),
                   },
                 ]
               : [],
