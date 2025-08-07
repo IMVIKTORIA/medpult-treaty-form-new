@@ -79,7 +79,7 @@ function FilesTab({ getDataHandler }: FilesTabProps) {
       <CustomList
         columnsSettings={columns}
         getDataHandler={getFiles}
-        isScrollable={false}
+        isScrollable={true}
       />
     </div>
   );

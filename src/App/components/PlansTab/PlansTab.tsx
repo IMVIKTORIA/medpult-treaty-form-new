@@ -49,7 +49,7 @@ function PlansTab({ setActionHandlers }: TabProps) {
 	return (
 		<div className="plans-tab">
 			<div className="plans-tab__list">
-				<CustomList columnsSettings={columns} getDataHandler={Scripts.getPlans} getDetailsLayout={getPlanDetailsLayout} isCreateMode={isCreateMode} getCreateLayout={getCreatePlanLayout} closeCreateMode={closeCreateMode} isScrollable={false} />
+				<CustomList columnsSettings={columns} getDataHandler={Scripts.getPlans} getDetailsLayout={getPlanDetailsLayout} isCreateMode={isCreateMode} getCreateLayout={getCreatePlanLayout} closeCreateMode={closeCreateMode} isScrollable={true} />
 			</div>
 		</div>
 	)

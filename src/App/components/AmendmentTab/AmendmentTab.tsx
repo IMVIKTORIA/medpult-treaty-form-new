@@ -76,7 +76,7 @@ function AmendmentTab({ setActionHandlers }: TabProps) {
 					columns
 				}
 				getDataHandler={Scripts.getAmendments}
-				isScrollable={false}
+				isScrollable={true}
 			/>
 		</div>
 	)

@@ -225,7 +225,7 @@ function InsuredTab({ values, handler, setActionHandlers, saveStateHandler }: In
 					setSearchHandler={setOnClickSearch}
 					getDetailsLayout={getInsuredDetailsLayout}
 					getDataHandler={Scripts.getContractors}
-					isScrollable={false}
+					isScrollable={true}
 				/>
 			</div>
 		</div>
